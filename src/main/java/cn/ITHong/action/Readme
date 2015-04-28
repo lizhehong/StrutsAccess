@@ -1,0 +1,21 @@
+1.
+	cn.ITHong.action.UserAction
+	使用属性驱动的方法
+2.
+	ActionContext.getContext().getValueStack().push(uList);
+	因为getValueStack是一个list
+	而push其实就是
+	 add(0, o);
+	 所以可以把对象放进栈顶
+3.
+	ActionContext.getContext().getValueStack().getRoot().add(uList);
+	找到对象栈 利用list可设置位置插入 然后再add
+4.
+	ActionContext.getContext().getValueStack().getRoot().get(0);
+	得到栈顶元素
+5.		
+	ActionContext.getContext().getValueStack().peek();
+	得到栈顶元素
+6.
+	ActionContext.getContext().getValueStack().pop();
+	删除栈顶元素

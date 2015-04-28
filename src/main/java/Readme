@@ -1,0 +1,25 @@
+需求代码的步骤
+		1.在Tomcat服务器启动的时候，执行一个ServletContextListener
+			把所有的用户和所有的用户能够访问到的额权限值全部取出来
+			技术点：User,Role,Permission三张表的多对多查询
+			核心表：User:	from User	
+			然后数据取出后去重（list->set->list）
+			最后把权限的集合封装成了Map,将来用户登陆以后，可以根据用户名
+			很容易的去除权限
+		2.登陆：
+			1.输入网址	必须有登陆页面(如果没有登陆)
+			2.提交登陆请求，跳转LoginAction
+				1.利用属性驱动获取数据
+				2.判断输入域
+					正确则根据Username把该用户能访问到的权限取出
+					把set<Permission>放入到了session中
+		3.点击用户管理
+			用户烈面页面，在页面上判断是否有符合的权限
+			如果有才能显示其按钮
+			因为在数据库已经规定了
+			所以得到s:if语句来判断用户的权限有没有这些字符串
+		4.判断过程
+			1.该用户的权限在session中，利用OGNL表达式可以提出
+				<s:iterator value="#session.permission_session" ></s:iterator>
+			2.判断权限对应按钮是否开放<s:if test=""></s:if>
+			
